@@ -38,6 +38,7 @@ If there is no file, a built-in chime plays. See [assets/audio/README.md](assets
 | --- | --- |
 | Grid size, snap tolerance, sound path, volume, default language, idle timeout | `js/config.js` |
 | Story chapters, poems, and all interface text (ES + EN) | `js/content.js` |
+| Your profile page ("Who made this puzzle?"): intro, why you made it, links | `PROFILE` in `js/content.js` (page: `profile.html`) |
 | Colors and layout | `css/styles.css` |
 | Puzzle logic | `js/puzzle.js` |
 

@@ -17,9 +17,10 @@ Spanish Civil War history or poetry. Completing the puzzle plays a sound.
 - 2026-11-10 — When the user asks to change text in one language, change only that language. Don't mirror the change into the other language unless asked.
 - 2026-11-10 — The Spanish must read as native **Spain** Spanish. Verify it against sources from Spain only: RAE (rae.es, the DPD and the Ortografía), institutions (Instituto Cervantes, Biblioteca Virtual Miguel de Cervantes, Ministerio de la Presidencia, Fundación García Lorca), or Spanish Wikipedia/Wikisource. Don't use Latin American sources for usage.
 
-- 2026-11-10 — The site will also be published on GitHub Pages (project site, `https://vperez-stars.github.io/guernica/`). Keep every path relative; no root-absolute `/…` URLs.
+- 2026-11-10 — The site will also be published on GitHub Pages (project site). Keep every path relative; no root-absolute `/…` URLs. Live URL (checked 2026-11-10): **`https://vperez-stars.github.io/Guernica/`** with a capital G. The lowercase `/guernica/` returns 404, so always use the capitalized form.
 - 2026-11-10 — Use the favicons from the user's Portfolio-Site project (`../Portfolio-Site`, "VP" monogram), copied to `assets/icons/`. That project's `site.webmanifest` uses root paths, so this project has its own manifest with relative paths.
 - 2026-11-10 — This project uses a **light version** of the VP favicon: bone `#e9e4d8` letters on a dark rounded tile `#151513`, generated from the Portfolio-Site 512 px icon. The Portfolio-Site originals (black VP on solid white) were not changed. `favicon.ico` holds PNG-encoded 16 and 32 px images. The source glyph is cropped at its left and right edges, so the copies are too.
+- 2026-11-10 — Creator profile page `profile.html` ("¿Quién ha hecho este puzle?" / "Who made this puzzle?"). It has an intro ("Sobre mí" / "About me"), a "why I made this project" section, and links to the portfolio (`https://vperez-stars.github.io/Portfolio-Site/`), LinkedIn (`linkedin.com/in/ventura-perez`), email (`vperez@icstars.org`) and GitHub (`github.com/vperez-stars`). These details come from `../Portfolio-Site/index.html`. The intro and "why" texts are drafts Claude wrote for the user to rewrite. Don't invent personal details or motives beyond them. The Spanish avoids gendered forms for the user (e.g., "Me dedico al desarrollo de software" rather than "desarrollador").
 
 ## Spanish style rules (RAE, verified 2026-11-10)
 - Thousands: use a non-breaking space, never a point: `35 000`. Four-digit numbers take no separator: `1654`. Decimals use a comma: `3,49`.
@@ -45,7 +46,8 @@ Spanish Civil War history or poetry. Completing the puzzle plays a sound.
 ## Architecture
 - Static site with no build step and no dependencies. **It must keep working when `index.html` is opened directly from disk (`file://`)**, because expo machines may be offline. Use plain `<script>` tags, not ES modules, `fetch`, or CDN fonts/libraries.
 - `js/config.js`: booth settings (`window.PUZZLE_CONFIG`). Grid is 6×3 = 18 pieces.
-- `js/content.js`: all text (`window.GUERNICA_CONTENT`): `UI` strings, 18 chronological `CARDS`, and the `FINALE` poem (Lorca, *Despedida*).
+- `js/content.js`: all text (`window.GUERNICA_CONTENT`): `UI` strings, 18 chronological `CARDS`, `PROFILE` (the creator page), and the `FINALE` poem (Lorca, *Despedida*).
+- `profile.html` + `js/profile.js`: creator profile page. Its text and links live in `GUERNICA_CONTENT.PROFILE` (`content.js`). It is linked from the puzzle's top bar (`#btn-profile`) and from the start screen. It shares the language choice through `localStorage` `guernica.lang`. After `idleResetSeconds` without activity it returns to `index.html` (kiosk).
 - `js/puzzle.js`: engine. Pieces are canvases with jigsaw-shaped `Path2D` outlines. Hit-testing uses `isPointInPath` on the stage (pieces have `pointer-events: none`). Pointer Events support multi-touch. Piece positions are stored in grid units (`ux`, `uy`) so they survive a resize.
 - `css/styles.css`: monochrome palette taken from the painting. `--lamp` is the only accent color.
 - Completion sound priority: file chosen in Settings (kept in IndexedDB) → `assets/audio/complete.mp3` → built-in WebAudio chime.

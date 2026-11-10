@@ -77,6 +77,7 @@ window.GUERNICA_CONTENT = {
       sc_demo: 'Modo demo: coloca una pieza',
       close: 'Cerrar',
       idleNote: 'Vuelve a la pantalla de inicio tras {s} s sin actividad.',
+      whoMade: '¿Quién ha hecho este puzle?',
       credits: 'Pablo Picasso, Guernica (1937). Museo Nacional Centro de Arte Reina Sofía, Madrid.'
     },
     en: {
@@ -125,6 +126,7 @@ window.GUERNICA_CONTENT = {
       sc_demo: 'Demo mode: place one piece',
       close: 'Close',
       idleNote: 'Returns to the start screen after {s} s of inactivity.',
+      whoMade: 'Who made this puzzle?',
       credits: 'Pablo Picasso, Guernica (1937). Museo Nacional Centro de Arte Reina Sofía, Madrid.'
     }
   },
@@ -328,6 +330,56 @@ window.GUERNICA_CONTENT = {
       }
     }
   ],
+
+  // Creator profile page (profile.html). EDIT ME: "about" and "why" are drafts;
+  // rewrite them in your own words. Each paragraph is one string in the array.
+  PROFILE: {
+    name: 'Ventura Perez Del Castillo',
+    links: {
+      portfolio: 'https://vperez-stars.github.io/Portfolio-Site/',
+      linkedin: 'https://www.linkedin.com/in/ventura-perez/',
+      github: 'https://github.com/vperez-stars',
+      email: 'vperez@icstars.org'
+    },
+    es: {
+      pageTitle: 'Quién ha hecho este puzle',
+      role: 'Desarrollo de software',
+      back: 'Volver al puzle',
+      aboutTitle: 'Sobre mí',
+      about: [
+        'Soy Ventura. Me dedico al desarrollo de software y quiero contribuir a mejorar el mundo a través de la tecnología. Ahora mismo estoy aprendiendo desarrollo web y me interesa crear aplicaciones que solucionan problemas reales.'
+      ],
+      whyTitle: 'Por qué he hecho este proyecto',
+      why: [
+        'He creado este puzle para una feria de tecnología. Quería demostrar que una aplicación web sencilla también puede servir para contar la historia: cada pieza que colocas abre un capítulo de la Guerra Civil española y de sus poetas, en español y en inglés.',
+        'Funciona en cualquier navegador, con ratón o pantalla táctil, sin conexión y sin instalar nada.'
+      ],
+      linksTitle: 'Contacto',
+      portfolio: 'Web personal',
+      linkedin: 'LinkedIn',
+      github: 'GitHub',
+      email: 'Correo electrónico'
+    },
+    en: {
+      pageTitle: 'Who made this puzzle',
+      role: 'Software developer',
+      back: 'Back to the puzzle',
+      aboutTitle: 'About me',
+      about: [
+        'I’m Ventura, a software developer who wants to make a difference in the world through technology. I’m currently learning web development, and I’m interested in building applications that solve real-world problems.'
+      ],
+      whyTitle: 'Why I made this project',
+      why: [
+        'I built this puzzle for a tech expo. I wanted to show that a simple web app can also tell history: every piece you place opens a chapter of the Spanish Civil War and its poets, in Spanish and English.',
+        'It runs in any browser, with a mouse or a touch screen, offline and with nothing to install.'
+      ],
+      linksTitle: 'Get in touch',
+      portfolio: 'Portfolio',
+      linkedin: 'LinkedIn',
+      github: 'GitHub',
+      email: 'Email'
+    }
+  },
 
   // Shown on the completion screen.
   FINALE: {
