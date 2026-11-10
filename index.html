@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Guernica · Puzle de la memoria</title>
+  <!-- Favicons: copied from the Portfolio-Site project (VP monogram). Relative paths so they work under /guernica/ on GitHub Pages. -->
+  <link rel="icon" href="assets/icons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
+  <link rel="manifest" href="assets/icons/site.webmanifest">
+  <meta name="theme-color" content="#151513">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <h1><span data-i18n="title"></span> <small data-i18n="subtitle"></small></h1>
+      </div>
+
+      <dl class="stats" aria-live="polite">
+        <div><dt data-i18n="pieces"></dt><dd id="stat-pieces">0/18</dd></div>
+        <div><dt data-i18n="time"></dt><dd id="stat-time">00:00</dd></div>
+        <div><dt data-i18n="moves"></dt><dd id="stat-moves">0</dd></div>
+      </dl>
+
+      <div class="controls">
+        <div class="lang-toggle" role="group" aria-label="Idioma / Language">
+          <button type="button" data-lang="es">ES</button>
+          <button type="button" data-lang="en">EN</button>
+        </div>
+        <button type="button" class="btn" id="btn-hint" aria-pressed="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+          <span data-i18n="hint"></span>
+        </button>
+        <button type="button" class="btn" id="btn-restart">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg>
+          <span data-i18n="shuffle"></span>
+        </button>
+        <button type="button" class="btn icon-only" id="btn-fullscreen" data-i18n-title="fullscreen">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>
+        </button>
+        <button type="button" class="btn icon-only" id="btn-settings" data-i18n-title="settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="stage" id="stage" aria-label="Puzzle">
+        <canvas id="board" class="board"></canvas>
+        <div class="toast" id="toast" role="status"></div>
+      </section>
+
+      <aside class="story" id="story">
+        <div class="story-head">
+          <h2 data-i18n="story"></h2>
+          <div class="progress" aria-hidden="true"><div class="progress-bar" id="progress-bar"></div></div>
+        </div>
+        <article class="feature" id="feature" aria-live="polite"></article>
+        <ol class="timeline" id="timeline"></ol>
+      </aside>
+    </main>
+  </div>
+
+  <!-- Start / attract screen -->
+  <div class="overlay is-open" id="intro">
+    <div class="overlay-card intro-card">
+      <p class="eyebrow">1937 · Pablo Picasso</p>
+      <h2 class="display"><span data-i18n="title"></span></h2>
+      <p class="lede" data-i18n="subtitle"></p>
+      <p data-i18n="tagline"></p>
+      <p class="muted" data-i18n="howTo"></p>
+      <div class="intro-lang" role="group" aria-label="Idioma / Language">
+        <button type="button" class="btn big" data-lang="es">Español</button>
+        <button type="button" class="btn big" data-lang="en">English</button>
+      </div>
+      <button type="button" class="btn primary big" id="btn-start" data-i18n="start"></button>
+      <p class="credits" data-i18n="credits"></p>
+    </div>
+  </div>
+
+  <!-- Completion screen -->
+  <div class="overlay" id="finale" aria-modal="true" role="dialog">
+    <div class="overlay-card finale-card">
+      <h2 class="display" data-i18n="completeTitle"></h2>
+      <p class="lede" id="finale-body"></p>
+      <dl class="finale-stats">
+        <div><dt data-i18n="time"></dt><dd id="finale-time"></dd></div>
+        <div><dt data-i18n="moves"></dt><dd id="finale-moves"></dd></div>
+      </dl>
+      <figure class="poem" id="finale-poem"></figure>
+      <div class="finale-actions">
+        <button type="button" class="btn big" id="btn-read" data-i18n="readStory"></button>
+        <button type="button" class="btn primary big" id="btn-again" data-i18n="playAgain"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Settings drawer (for booth staff) -->
+  <div class="drawer" id="settings" aria-hidden="true">
+    <div class="drawer-panel" role="dialog" aria-labelledby="settings-title">
+      <div class="drawer-head">
+        <h2 id="settings-title" data-i18n="settings"></h2>
+        <button type="button" class="btn icon-only" id="btn-close-settings" data-i18n-title="close">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+
+      <section>
+        <h3 data-i18n="soundTitle"></h3>
+        <p class="muted" data-i18n="soundHelp"></p>
+        <p class="sound-source" id="sound-source"></p>
+        <label class="switch"><input type="checkbox" id="sound-enabled"> <span data-i18n="enableSound"></span></label>
+        <label class="range"><span data-i18n="volume"></span> <input type="range" id="sound-volume" min="0" max="1" step="0.05"></label>
+        <div class="row">
+          <button type="button" class="btn" id="btn-choose-sound" data-i18n="chooseSound"></button>
+          <button type="button" class="btn" id="btn-test-sound" data-i18n="testSound"></button>
+          <button type="button" class="btn" id="btn-clear-sound" data-i18n="resetSound"></button>
+        </div>
+        <input type="file" id="sound-file" accept="audio/*" hidden>
+      </section>
+
+      <section>
+        <h3 data-i18n="shortcuts"></h3>
+        <ul class="shortcuts">
+          <li><kbd>H</kbd> <span data-i18n="sc_hint"></span></li>
+          <li><kbd>L</kbd> <span data-i18n="sc_lang"></span></li>
+          <li><kbd>F</kbd> <span data-i18n="sc_full"></span></li>
+          <li><kbd>Shift</kbd>+<kbd>R</kbd> <span data-i18n="sc_restart"></span></li>
+          <li><kbd>Shift</kbd>+<kbd>D</kbd> <span data-i18n="sc_demo"></span></li>
+        </ul>
+        <p class="muted" id="idle-note"></p>
+      </section>
+    </div>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/content.js"></script>
+  <script src="js/puzzle.js"></script>
+</body>
+</html>
